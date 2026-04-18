@@ -1,0 +1,21 @@
+﻿
+D:\project\E-Shop\client\src\context\AuthContext.jsx
+   3:14  error  Fast refresh only works when a file only exports components. Move your React context(s) to a separate file                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                react-refresh/only-export-components
+  15:29  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  13 |             // for simplicity, we assume login stores the user details.
+  14 |             const storedUser = localStorage.getItem('user');
+> 15 |             if (storedUser) setUser(JSON.parse(storedUser));
+     |                             ^^^^^^^ Avoid calling setState() directly within an effect
+  16 |         } else {
+  17 |             localStorage.removeItem('token');
+  18 |             localStorage.removeItem('user');  react-hooks/set-state-in-effect
+
+Γ£û 2 problems (2 errors, 0 warnings)
+

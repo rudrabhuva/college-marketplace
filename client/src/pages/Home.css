@@ -1,0 +1,190 @@
+.hero {
+    text-align: center;
+    padding: 8rem 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    transition: background 0.2s ease;
+}
+
+/* 1. Glowing Glassmorphism Blobs */
+.blob-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    /* Use radial-gradient instead of heavy filter: blur */
+    opacity: 0.4;
+    animation: float-blob 20s infinite alternate ease-in-out;
+}
+
+.blob-purple {
+    background: radial-gradient(circle, #7c3aed 0%, transparent 60%);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-blue {
+    background: radial-gradient(circle, #3b82f6 0%, transparent 60%);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -10s;
+}
+
+@keyframes float-blob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(150px, 100px) scale(1.2); }
+}
+
+/* 2. Typing Cursor Styles */
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--accent);
+    margin-left: 5px;
+    vertical-align: middle;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* 4. Floating Parallax Icons */
+.floating-icon {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.icon-1 { top: 15%; left: 10%; }
+.icon-2 { bottom: 15%; right: 10%; }
+.icon-3 { top: 20%; right: 15%; }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    margin-bottom: 2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    max-width: 800px;
+    margin: 0 auto 3.5rem auto;
+    line-height: 1.6;
+    height: 1.6em; /* Prevent layout shift during typing */
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.filters-bar {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filters-title {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.filters-controls {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.25rem;
+    color: var(--text-muted);
+}
+
+.search-input {
+    padding-left: 3rem !important;
+}
+
+.category-select {
+    width: auto !important;
+    padding-right: 2.5rem !important;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .blob {
+        animation: none; /* Disable blob animation on mobile */
+    }
+
+    .floating-icon {
+        display: none; /* Hide floating parallax icons on mobile for cleaner look */
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .filters-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .filters-controls {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .filters-controls {
+        flex-direction: column;
+    }
+
+    .category-select {
+        width: 100% !important;
+    }
+}
